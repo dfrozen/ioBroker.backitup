@@ -101,8 +101,7 @@
                             found = res.rows[i].value._id;
                             break;
                         }
-<<<<<<< HEAD
-			    //PostgreSql
+
 			 if (common.enabled && native.dbtype === 'postgresql') {
                             $('#pgSqlUser').val(native.user).trigger('change');
                             $('#pgSqlPassword').val(native.password).trigger('change');
@@ -112,13 +111,10 @@
                             var id = res.rows[i].value.
                             found = res.rows[i].value._id;
                             break;
-                        } 
+                        }
 			//PostgreSql
                     }
-			
-=======
                     }
->>>>>>> parent of bdd5c16... Develop changes PGSQL
                     if (!found) {
                         for (var j = 0; j < res.rows.length; j++) {
                             var _native = res.rows[j].value.native;
@@ -532,12 +528,12 @@
                 fetchHistoryConfig(true);
             }
             if (!settings.mySqlUser) {
-<<<<<<< HEAD
-                fetchMySqlConfig(true);
-=======
                 fetchMySqlConfig(true)
->>>>>>> parent of bdd5c16... Develop changes PGSQL
             }
+            if (!settings.pgSqlUser) {
+                fetchMySqlConfig(true)
+            }
+
             $('.detect-mysql').on('click', function () {fetchMySqlConfig()});
             $('.detect-ccu').on('click', function () {fetchCcuConfig()});
             $('.detect-history').on('click', function () {fetchHistoryConfig()});
@@ -655,15 +651,8 @@
             }
             if ($('#mySqlEnabled').prop('checked')) {
                 $('.mysql').show();
-<<<<<<< HEAD
-		$('.pgsql').hide();  //Postgres  
             } else {
                 $('.mysql').hide();
-		$('.pgsql').hide();  //Postgres  
-=======
-            } else {
-                $('.mysql').hide();
->>>>>>> parent of bdd5c16... Develop changes PGSQL
             }
             var minimal = $('#minimalEnabled').prop('checked');
             if (minimal) {
@@ -689,9 +678,7 @@
                 $('.copy').hide();
             }
             }).trigger('change');
-
-<<<<<<< HEAD
-//SQLConnectionType
+            //SQLConnectionType
 	    $('#SqlConnectionType').on('change', function () {
             if ($(this).val() === 'MySQL') {
                 $('.pgsql').hide();
@@ -699,14 +686,11 @@
             } else if ($(this).val() === 'PostgesSQL') {
                 $('.pgsql').show();
                 $('.mysql').hide();
-            } 
+            }
             }).trigger('change');
-//SQLConnectionType		
 
-		$('#restoreSource').on('change', function () {
-=======
             $('#restoreSource').on('change', function () {
->>>>>>> parent of bdd5c16... Develop changes PGSQL
+
                 if ($(this).val() === 'cifs' && $('#cifsOwnDir').prop('checked')) {
                     $('.bkpType').show();
                 } else if ($(this).val() === 'ftp' && $('#ftpOwnDir').prop('checked')) {
@@ -787,7 +771,7 @@
                 <li class="tab col s6 l2"><a href="#tab-settings" class="translate active">main settings</a></li>
                 <li class="tab col s6 l2 tab-iobroker-backup"><a href="#tab-iobroker-backup" class="translate">iobroker backup</a></li>
                 <li class="tab col s6 l2 tab-ccu-backup"><a href="#tab-ccu-backup" class="translate">CCU Backup</a></li>
-                <li class="tab col s6 l2 tab-my-sql"><a href="#tab-my-sql" class="translate">MySql Backup</a></li>
+                <li class="tab col s6 l2 tab-sql"><a href="#tab-my-sql" class="translate">Sql Backup</a></li>
                 <li class="tab col s6 l2 tab-history"><a href="#tab-history" class="translate">History Data Backup</a></li>
                 <li class="tab col s6 l2 tab-redis"><a href="#tab-redis" class="translate">Redis Backup</a></li>
                 <li class="tab col s6 l2 tab-notification"><a href="#tab-notification" class="translate">Notifications</a></li>
@@ -818,12 +802,13 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6 l3 ">
-                        <input class="value" id="mySqlEnabled" type="checkbox"/>
-<<<<<<< HEAD
-                        <label for="mySqlEnabled" class="translate">DB Sql Backup</label>
-=======
-                        <label for="mySqlEnabled" class="translate">MySql Backup</label>
->>>>>>> parent of bdd5c16... Develop changes PGSQL
+                        <input class="value" id="SqlEnabled" type="checkbox"/>
+
+                        <label for="SqlEnabled" class="translate">DB Sql Backup</label>
+
+                        <input class="value" id="SqlEnabled" type="checkbox"/>
+
+                        <label for="SqlEnabled" class="translate">DB Sql Backup</label>
                     </div>
                     <div class="input-field col s6 l3">
                         <input class="value" id="redisEnabled" type="checkbox"/>
@@ -960,35 +945,34 @@
             <!-- Mysql Backup -->
             <div id="tab-my-sql" class="col s12 page">
                 <div class="row">
-<<<<<<< HEAD
+
 			<div class="input-field col s6 l3">
                   <a class="waves-effect waves-light btn detect-mysql"><i class="material-icons right">search</i><span class="translate">detect config</span></a>
      			 </div>
-		
-	    </div>	
+
+	    </div>
 	<div class="row">
 		<!-- Selectl SQL type-->
 		    <div class="input-field col s11 m2">
                         <select class="value" id="SqlConnectionType">
                         <option value="MySQL" class="translate">MySQL</option>
                         <option value="PostgesSQL" class="translate">PostgesSQL</option>
-                       
+
                         </select>
                         <label for="SqlConnectionType" class="translate">Sql Connection type</label>
                     </div>
 		<!-- Selectl SQL type-->
         </div>
 
-<!-- mySQL -->    
+<!-- mySQL -->
                 <div class="row mysql">
-	
-=======
+
                     <div class="input-field col s6 l3 mysql">
                         <a class="waves-effect waves-light btn detect-mysql"><i class="material-icons right">search</i><span class="translate">detect config</span></a>
                     </div>
                 </div>
                 <div class="row mysql">
->>>>>>> parent of bdd5c16... Develop changes PGSQL
+
                     <div class="input-field col s12 m6 l4">
                         <input class="value" id="mySqlHost" type="text">
                         <label for="mySqlHost" class="translate">Host</label>
@@ -1031,12 +1015,10 @@
                         <input class="value" id="mysqlSingleTransaction" type="checkbox"/>
                         <label for="mysqlSingleTransaction" class="translate">BEGIN instruction before backup</label>
                     </div>
-                </div>
-<<<<<<< HEAD
-									     
-	<!-- PgSQL -->    
+                </div>						     
+	<!-- PgSQL -->
                 <div class="row pgsql">
-	
+
                     <div class="input-field col s12 m6 l4">
                         <input class="value" id="pgSqlHost" type="text">
                         <label for="pgSqlHost" class="translate">Host</label>
@@ -1070,10 +1052,8 @@
                         <span class="translate">Path with filename to pg_dump executable (leave empty to use default)</span>
                     </div>
                 </div>
-=======
->>>>>>> parent of bdd5c16... Develop changes PGSQL
             </div>
-									     
+
             <!-- Redis -->
             <div id="tab-redis" class="col s12 page">
                 <div class="row">
